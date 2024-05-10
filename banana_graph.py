@@ -13,6 +13,16 @@ class Banana_graph_maker:
         plt.show()
     def assoication(self):
         pass
-k = Banana_graph_maker()
-k.show_hist(["Size",'Sweetness'])
+    def quality_graph(self,name):
     
+        plt.figure(figsize=(12, 8))
+        sns.boxplot(x= name, hue='Quality', data=self.new_df)
+        plt.xlabel(f'{name}')
+        plt.ylabel('Frequency')
+        plt.title(f'Boxplot of Rating for {name} , with Good quality vs.Bad quality')
+        plt.xticks(rotation=45)  # Rotating x-axis labels for better readability
+        plt.legend(title=f'Quality of {name}', loc='upper left')
+        plt.show()
+k = Banana_graph_maker()
+#k.show_hist(["Size",'Sweetness'])
+k.quality_graph("Size")

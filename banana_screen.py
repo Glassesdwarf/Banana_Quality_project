@@ -14,15 +14,11 @@ class Banana_application(tk.Frame):
         self.checkbar.pack()
         self.quit = tk.Button(root, text='Quit', command=root.quit).pack()
         #self.graph_button = tk.Button(root, text='hist', command=lambda: self.graph.show_hist(self.handle_hist_button())).pack()
-        self.graph_button = tk.Button(root, text='hist', command=self.print).pack()
-        #self.init_component()
-    #def init_component(self):
-        
-        
-       
+        self.graph_button = tk.Button(root, text='hist', command=self.print).pack() 
+        self.quality_check_button = tk.Button(root, text='quality_check', command=self.quality_check).pack()
     def handle_hist_button(self):
         new_list = []
-        list_of_attribute = ['Size', 'Weight', 'Sweetness','Softness','Ripeness','HarvestTime','Acidity','Quality']
+        list_of_attribute = ['Size', 'Weight', 'Sweetness','Softness','Ripeness','HarvestTime','Acidity']
         checked = list(self.checkbar.state())
         
         for value, label in zip(checked,list_of_attribute):
@@ -32,7 +28,10 @@ class Banana_application(tk.Frame):
             return (new_list)
     def print(self):
         self.graph.show_hist(self.handle_hist_button())
-            
+    def quality_check(self):
+        _list = self.handle_hist_button()
+        for value in _list:
+            self.graph.quality_graph(value)
 
 if __name__ == "__main__":
     root = tk.Tk()
