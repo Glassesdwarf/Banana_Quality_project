@@ -22,7 +22,7 @@ print(k.correlation("Acidity"))
 #Softness nearly have nothing to do with other attribute
 #harvest time affect the Size of Banana
 #Ripeness make acidity low
-#Acidity affect the wright
+#Acidity affect the weight
 
 #Story that you can get from this data set is 
 #-The longer it take to harvest the banana the bigger it will be
