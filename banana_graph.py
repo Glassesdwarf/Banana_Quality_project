@@ -9,14 +9,17 @@ class Banana_graph_maker:
         self.df.dropna(inplace=True)
         self.new_df = self.df.copy()
     def show_hist(self,name,**kwargs):
+        """"show basic histogram"""
         self.new_df[name].hist(figsize=(10, 8))
         plt.show()
     def correlation(self,name):
+        """"finding correlation"""
         new_df = self.df.copy()
         new_df.drop(columns=["Quality"], inplace=True)  # Drop the 'Quality' column
         corr_matrix = new_df.corr()
         return corr_matrix[name]
     def correl_graph(self, x_attr, y_attr):
+        """""making scatter graph from 2 selected attribute"""
         plt.figure(figsize=(10, 8))
         plt.scatter(self.new_df[x_attr], self.new_df[y_attr])
         plt.xlabel(x_attr)
@@ -25,7 +28,7 @@ class Banana_graph_maker:
         plt.grid(True)
         plt.show()
     def quality_graph(self,name):
-    
+        """""Making box plot of quality of selected attribute"""
         plt.figure(figsize=(12, 8))
         sns.boxplot(x= name, hue='Quality', data=self.new_df)
         plt.xlabel(f'{name}')

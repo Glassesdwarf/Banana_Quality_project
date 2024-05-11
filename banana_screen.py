@@ -29,6 +29,7 @@ class Banana_application(tk.Frame):
         self.estimation_value = tk.Label(text = " ")
         self.estimation_value.pack()
     def estimate_init(self):
+        """creating entry widget for estimated"""
         self.entry_widgets = {}
         for i in ['Size', 'Weight', 'Sweetness','Softness','Ripeness','Harvesttime','Acidity']:
                 label = tk.Label(root, text=f"{i}")
@@ -37,6 +38,7 @@ class Banana_application(tk.Frame):
                 entry.pack()
                 self.entry_widgets[i] = entry
     def quality_estimate(self):
+        """""estimate the quality of banana the number in this method are based on decision tree plotted in rapidminer"""
         d_t = 0
         for i in ['Size', 'Weight', 'Sweetness','Softness','Ripeness','Harvesttime','Acidity']:
             if i == "":
@@ -87,6 +89,7 @@ class Banana_application(tk.Frame):
                 
                 
     def handle_hist_button(self):
+        """return the value in checkbox out"""
         new_list = []
         list_of_attribute = ['Size', 'Weight', 'Sweetness','Softness','Ripeness','HarvestTime','Acidity']
         checked = list(self.checkbar.state())
@@ -97,14 +100,17 @@ class Banana_application(tk.Frame):
         if new_list != []:
             return (new_list)
     def scatter_graph(self):
+        """""handle making scatter graph"""
         _list = self.handle_hist_button()
         if len(_list) != 2 or len(_list) == []:
             self.label_scatter.config(foreground="red")
         else:
             self.graph.correl_graph(_list[0],_list[1])
     def print(self):
+        """""show basic plot"""
         self.graph.show_hist(self.handle_hist_button())
     def quality_check(self):
+        """""showing box plot of quality good bad of selected attribute"""
         _list = self.handle_hist_button()
         for value in _list:
             self.graph.quality_graph(value)
