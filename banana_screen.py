@@ -20,7 +20,72 @@ class Banana_application(tk.Frame):
         self.label_scatter.pack()
         self.scatter_button = tk.Button(root, text='scatter', command=self.scatter_graph)
         self.scatter_button.pack()
-        self.label = tk.Label(text = "Quality estimatation").pack()
+        #self.label = tk.Label(text = "Quality estimatation").pack()
+        self.label = tk.Label(text = "Quality estimatation (type in number between -10 to 10)")
+        self.label.pack()
+        self.estimate_init()
+        self.estimate_button = tk.Button(root, text='estimate', command=self.quality_estimate)
+        self.estimate_button.pack()
+        self.estimation_value = tk.Label(text = " ")
+        self.estimation_value.pack()
+    def estimate_init(self):
+        self.entry_widgets = {}
+        for i in ['Size', 'Weight', 'Sweetness','Softness','Ripeness','Harvesttime','Acidity']:
+                label = tk.Label(root, text=f"{i}")
+                label.pack()
+                entry = ttk.Entry(root, font=('Arial', 14))
+                entry.pack()
+                self.entry_widgets[i] = entry
+    def quality_estimate(self):
+        d_t = 0
+        for i in ['Size', 'Weight', 'Sweetness','Softness','Ripeness','Harvesttime','Acidity']:
+            if i == "":
+                d_t += 0
+            elif not isinstance(i, (float, int)):
+                self.label.config(foreground="red")
+            elif self.entry_widgets[i] > 10 or self.entry_widgets[i] < -10:
+                self.label.config(foreground="red")
+            
+            if float(self.entry_widgets["Sweetness"].get()) > 2.109 and float(self.entry_widgets["Harvesttime"].get()) > -4.968 and float(self.entry_widgets["Weight"].get()) <= -1.58 and float(self.entry_widgets["Size"].get()) > -2.144:
+                d_t += 1
+            if float(self.entry_widgets["Sweetness"].get()) > 2.109 and float(self.entry_widgets["Harvesttime"].get()) > -4.968 and float(self.entry_widgets["Weight"].get()) >= -1.58 and float(self.entry_widgets["Softness"].get()) > 2.76:
+                d_t += 1
+            if float(self.entry_widgets["Sweetness"].get()) > 2.109 and float(self.entry_widgets["Harvesttime"].get()) > -4.968 and float(self.entry_widgets["Weight"].get()) >= -1.58 and float(self.entry_widgets["Softness"].get()) <= 2.76 and float(self.entry_widgets["Size"].get()) <= -5.17:
+                d_t += 1
+            if float(self.entry_widgets["Sweetness"].get()) > 2.109 and float(self.entry_widgets["Harvesttime"].get()) > -4.968 and float(self.entry_widgets["Weight"].get()) >= -1.58 and float(self.entry_widgets["Softness"].get()) <= 2.76 and float(self.entry_widgets["Size"].get()) > -5.17 and float(self.entry_widgets["Softness"].get()) <= 1.2:
+                d_t += 1
+            if float(self.entry_widgets["Sweetness"].get()) > 2.109 and float(self.entry_widgets["Harvesttime"].get()) > -4.968 and float(self.entry_widgets["Weight"].get()) >= -1.58 and float(self.entry_widgets["Softness"].get()) <= 2.76 and float(self.entry_widgets["Size"].get()) > -5.17 and float(self.entry_widgets["Softness"].get()) > 1.2 and float(self.entry_widgets["Sweetness"].get()) > 2.4:
+                d_t += 1
+            if float(self.entry_widgets["Sweetness"].get()) <= 2.109 and float(self.entry_widgets["Harvesttime"].get()) > 1.74 and float(self.entry_widgets["Ripeness"].get()) > -4.26 and float(self.entry_widgets["Acidity"].get()) <= -4.93 and float(self.entry_widgets["Softness"].get()) > -3.48 and float(self.entry_widgets["Ripeness"].get()) > -2.99 and float(self.entry_widgets["Softness"].get()) <= -2.53 and float(self.entry_widgets["Ripeness"].get()) <= 0.97:
+                d_t += 1
+            if float(self.entry_widgets["Sweetness"].get()) <= 2.109 and float(self.entry_widgets["Harvesttime"].get()) > 1.74 and float(self.entry_widgets["Ripeness"].get()) > -4.26 and float(self.entry_widgets["Acidity"].get()) <= -4.43:
+                d_t += 1
+            if float(self.entry_widgets["Sweetness"].get()) <= 2.109 and float(self.entry_widgets["Harvesttime"].get()) > 1.74 and float(self.entry_widgets["Ripeness"].get()) > -4.26 and float(self.entry_widgets["Acidity"].get()) <= -4.93 and float(self.entry_widgets["Softness"].get()) > -3.48 and float(self.entry_widgets["Ripeness"].get()) > -2.99 and float(self.entry_widgets["Size"].get()) > 2.02:
+                d_t += 1
+            if float(self.entry_widgets["Sweetness"].get()) <= 2.109 and float(self.entry_widgets["Harvesttime"].get()) <= 1.74 and float(self.entry_widgets["Softness"].get()) > 3.89 :
+                d_t += 1
+            if float(self.entry_widgets["Sweetness"].get()) <= 2.109 and float(self.entry_widgets["Harvesttime"].get()) > 1.74 and float(self.entry_widgets["Softness"].get()) > 3.89 and float(self.entry_widgets["Acidity"].get()) <= 5.32 and float(self.entry_widgets["Acidity"].get()) > -2.932 and float(self.entry_widgets["Harvesttime"].get()) > -4.22 and float(self.entry_widgets["Softness"].get()) > 1.1 and float(self.entry_widgets["Size"].get()) > -0.29:
+                d_t += 1
+            if float(self.entry_widgets["Sweetness"].get()) <= 2.109 and float(self.entry_widgets["Harvesttime"].get()) > 1.74 and float(self.entry_widgets["Softness"].get()) > 3.89 and float(self.entry_widgets["Acidity"].get()) <= 5.32 and float(self.entry_widgets["Acidity"].get()) > -2.932 and float(self.entry_widgets["Harvesttime"].get()) > -4.22 and float(self.entry_widgets["Softness"].get()) <= 1.1 and float(self.entry_widgets["Harvesttime"].get()) > -3.82:
+                d_t += 1
+            if float(self.entry_widgets["Sweetness"].get()) <= 2.109 and float(self.entry_widgets["Harvesttime"].get()) > 1.74 and float(self.entry_widgets["Softness"].get()) <= 3.89 and float(self.entry_widgets["Weight"].get()) <= 1.72 and float(self.entry_widgets["Size"].get()) > 3.2 and float(self.entry_widgets["Harvesttime"].get()) > -2.5 and float(self.entry_widgets["Softness"].get()) > -3.2 and float(self.entry_widgets["Ripeness"].get()) > -5.19:
+                d_t += 1
+            if float(self.entry_widgets["Sweetness"].get()) <= 2.109 and float(self.entry_widgets["Harvesttime"].get()) > 1.74 and float(self.entry_widgets["Softness"].get()) <= 3.89 and float(self.entry_widgets["Weight"].get()) <= 1.72 and float(self.entry_widgets["Size"].get()) <= 3.2 and float(self.entry_widgets["Acidity"].get()) > -6 and float(self.entry_widgets["Ripeness"].get()) > 6.6:
+                d_t += 1
+            if float(self.entry_widgets["Sweetness"].get()) <= 2.109 and float(self.entry_widgets["Harvesttime"].get()) > 1.74 and float(self.entry_widgets["Softness"].get()) <= 3.89 and float(self.entry_widgets["Weight"].get()) <= 1.72 and float(self.entry_widgets["Size"].get()) <= 3.2 and float(self.entry_widgets["Acidity"].get()) > -6 and float(self.entry_widgets["Ripeness"].get()) <= 6.6 and float(self.entry_widgets["Softness"].get()) > 3.3 and float(self.entry_widgets["Size"].get()) > -2.4:
+                d_t += 1
+            if float(self.entry_widgets["Sweetness"].get()) <= 2.109 and float(self.entry_widgets["Harvesttime"].get()) > 1.74 and float(self.entry_widgets["Softness"].get()) <= 3.89 and float(self.entry_widgets["Weight"].get()) <= 1.72 and float(self.entry_widgets["Size"].get()) <= 3.2 and float(self.entry_widgets["Acidity"].get()) > -6 and float(self.entry_widgets["Ripeness"].get()) <= 6.6 and float(self.entry_widgets["Softness"].get()) <= 3.3 and float(self.entry_widgets["Size"].get()) > -2.4:
+                d_t += 1
+            if float(self.entry_widgets["Sweetness"].get()) <= 2.109 and float(self.entry_widgets["Harvesttime"].get()) > 1.74 and float(self.entry_widgets["Softness"].get()) <= 3.89 and float(self.entry_widgets["Weight"].get()) <= 1.72 and float(self.entry_widgets["Size"].get()) <= 3.2 and float(self.entry_widgets["Acidity"].get()) <= -6:
+                d_t += 1
+        else:
+            pass
+        if d_t >= 1:
+            self.estimation_value.config(text="Good Banana")
+        elif d_t == 0:
+            self.estimation_value.config(text="Bad Banana")
+                
+                
     def handle_hist_button(self):
         new_list = []
         list_of_attribute = ['Size', 'Weight', 'Sweetness','Softness','Ripeness','HarvestTime','Acidity']
