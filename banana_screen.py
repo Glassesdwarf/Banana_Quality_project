@@ -10,12 +10,17 @@ class Banana_application(tk.Frame):
     def __init__(self,parent):
         super().__init__(parent)
         self.graph = Banana_graph_maker()
-        self.checkbar =  Checkbar(root, ['Size', 'Weight', 'Sweetness','Softness','Ripeness','Harvesttime','Acidity','Quality'])
+        self.checkbar =  Checkbar(root, ['Size', 'Weight', 'Sweetness','Softness','Ripeness','Harvesttime','Acidity'])
         self.checkbar.pack()
         self.quit = tk.Button(root, text='Quit', command=root.quit).pack()
         #self.graph_button = tk.Button(root, text='hist', command=lambda: self.graph.show_hist(self.handle_hist_button())).pack()
         self.graph_button = tk.Button(root, text='hist', command=self.print).pack() 
         self.quality_check_button = tk.Button(root, text='quality_check', command=self.quality_check).pack()
+        self.label_scatter = tk.Label(text = "Scatter_plot(Choose only 2 attribute)")
+        self.label_scatter.pack()
+        self.scatter_button = tk.Button(root, text='scatter', command=self.scatter_graph)
+        self.scatter_button.pack()
+        self.label = tk.Label(text = "Quality estimatation").pack()
     def handle_hist_button(self):
         new_list = []
         list_of_attribute = ['Size', 'Weight', 'Sweetness','Softness','Ripeness','HarvestTime','Acidity']
@@ -26,6 +31,12 @@ class Banana_application(tk.Frame):
                 new_list.append(label)
         if new_list != []:
             return (new_list)
+    def scatter_graph(self):
+        _list = self.handle_hist_button()
+        if len(_list) != 2 or len(_list) == []:
+            self.label_scatter.config(foreground="red")
+        else:
+            self.graph.correl_graph(_list[0],_list[1])
     def print(self):
         self.graph.show_hist(self.handle_hist_button())
     def quality_check(self):
